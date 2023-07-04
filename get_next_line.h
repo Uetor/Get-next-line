@@ -11,4 +11,10 @@ char	*ft_strdup(const char *s);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(const char *s1, const char *s2);
 
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 100
+#endif
+
+char	*get_next_line(int fd);
+
 #endif
