@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pedrogon <pedrogon@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/19 20:27:34 by pedrogon          #+#    #+#             */
+/*   Updated: 2023/07/19 20:28:55 by pedrogon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 static char	*ft_cut(char *buffer)
@@ -14,7 +26,7 @@ static char	*ft_cut(char *buffer)
 		free (buffer);
 		return (NULL);
 	}
-	new =(char *)malloc(sizeof(char) * (ft_strlen(buffer) -i) + 1);
+	new = (char *)malloc(sizeof(char) * (ft_strlen(buffer) -i) + 1);
 	if (new == NULL)
 		return (NULL);
 	i++;
@@ -26,7 +38,7 @@ static char	*ft_cut(char *buffer)
 	return (new);
 }
 
-static char *ft_line(char *buffer)
+static char	*ft_line(char *buffer)
 {
 	char	*line;
 	int		i;
@@ -47,7 +59,7 @@ static char *ft_line(char *buffer)
 
 static char	*ft_join(char *buffer, char *buf)
 {
-	char *temp;
+	char	*temp;
 
 	temp = ft_strjoin(buffer, buf);
 	free (buffer);
@@ -60,7 +72,7 @@ static char	*ft_read(int fd, char *buffer)
 	int		nr_bytes;
 	char	*buf;
 
-	buf = (char *)malloc(sizeof(char)* BUFFER_SIZE + 1);
+	buf = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	nr_bytes = 1;
 	while (nr_bytes > 0 && !ft_strchr(buffer, '\n'))
 	{
