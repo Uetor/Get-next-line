@@ -1,4 +1,4 @@
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*ft_cut(char *buffer)
 {
@@ -86,16 +86,16 @@ static char	*ft_read(int fd, char *buffer)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	char static	*buffer;
+	char static	buffer[4096];
 
-	if (fd < 0 || read(fd, 0, 0) || BUFFER_SIZE <= 0)
+	if (fd < 0 || read(fd, 0, 0) || BUFFER_SIZE <= 0 || fd > 4096)
 		return (NULL);
-	if (buffer == NULL)
-		buffer = ft_strdup("");
-	buffer = ft_read(fd, buffer);
-	if (buffer == NULL)
+	if (buffer[fd] == NULL)
+		buffer[fd] = ft_strdup("");
+	buffer[fd] = ft_read(fd, buffer[fd]);
+	if (buffer[fd] == NULL)
 		return (NULL);
-	line = ft_line(buffer);
-	buffer = ft_cut(buffer);
+	line = ft_line(buffer[fd]);
+	buffer[fd] = ft_cut(buffer[fd]);
 	return (line);
 }
